@@ -1,0 +1,90 @@
+
+dotfiles.d/README
+
+# Author:	Sergio Ferreira <sfer96@gmail.com>
+# Date:		20200310
+
+# ***************************************************************************
+Each file in this directory is a source file or a configuration file 
+	for setting up adicional functionality into the shell environment 
+	- see scripts section below for adicional information.
+
+The shell scripts are intended to be sourced on bash or ksh shells, 
+	and to provide an easy way to extend to other shells; e.g.: zsh.
+They are expected to run on multiple Linux flavours; and have been tested 
+	on Red Hat and Debian based systems.
+
+	SHELL's:
+		bash	GNU bash, version 4.4.19(1)-release (x86_64-redhat-linux-gnu)
+		ksh		version sh (AT&T Research) 93u+ 2012-08-01
+
+
+# ***************************************************************************
+Install
+
+These files are intended to run for setting an user's environment.
+
+Copy dotfiles.d to your home directory and add the command below 
+	to your ~/.<shell>rc file:
+
+	[ -f ~/dotfiles.d/loadenv.sh ] && . ~/dotfiles.d/loadenv.sh
+
+	e.g.:
+	bash:	echo '[ -f ~/dotfiles.d/loadenv.sh ] && . ~/dotfiles.d/loadenv.sh' >> ~/.bashrc
+	ksh:	echo '[ -f ~/dotfiles.d/loadenv.sh ] && . ~/dotfiles.d/loadenv.sh' >> ~/.kshrc
+
+
+You can also do a system wide installation; in this case you will need 
+	root or sudo permissions.
+	
+Edit loadenv.sh
+	comment the line source_dir=~/dotfiles
+	uncomment the line #source_dir=/etc/profile.d/dotfiles
+
+Copy dotfiles.d to /etc/profile.d
+
+Create a file in /etc/profile.d with '.sh' extension and
+	copy the command below:
+
+	if [ -f /etc/profile.d/dotfiles/loadenv.sh ]; then
+		. /etc/profile.d/dotfiles/loadenv.sh
+	fi
+
+
+# ***************************************************************************
+Scripts
+
+	loadenv.sh 		orchestrates script sourcing
+	prompt.sh		prompt definition; sets PS1 format and colors
+	options.sh		sets shell options
+	functions.sh	some usefull functions
+	alias.sh		alias definitions
+	proglangs.sh	set up programming languages environment variables
+	apps.sh 		my apps environment variables
+
+
+# ***************************************************************************
+TODO's and BUGS
+	add zsh functionality
+	proglangs.sh: add environment support for python, julia, java, c, ruby
+	create an install automation script
+	prompt.sh: add pwd and time to ksh's PS1
+	add git 
+
+# ***************************************************************************
+Licence
+
+This file is part of dotfiles.d.
+
+dotfiles.d is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+dotfiles.d is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with dotfiles.d.  If not, see <http://www.gnu.org/licenses/>.
