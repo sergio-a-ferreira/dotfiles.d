@@ -16,7 +16,7 @@ case "${shtype}" in
 		PROMPT_COLORS[CYAN]="\[\e[1;36m\]"
 		PROMPT_COLORS[WHITE]="\[\e[1;37m\]"
 
-		PS1="${PROMPT_COLORS[GREEN]}\u@\H [${PROMPT_COLORS[YELLOW]}\w ${PROMPT_COLORS[RED]}\t${PROMPT_COLORS[GREEN]}]\$ ${PROMPT_COLORS[NORMAL]}"
+		PS1="${PROMPT_COLORS[BLUE]}\u@\H:\w [${PROMPT_COLORS[CYAN]}\t${PROMPT_COLORS[BLUE]}]\$ ${PROMPT_COLORS[NORMAL]}"
 	;;
 	"ksh")
 		color=(
@@ -39,8 +39,9 @@ case "${shtype}" in
 			auto='\033[0m'
 		)
 
-		PS1=$( print -n "${color.lightgreen}$(logname)@$(hostname) $ ${color.auto}" )
+		PS1=$( print -n "${color.lightblue}$(logname)@$(hostname):\${PWD}${color.lightcyan} [\$(date +"%H:%M:%S")]${color.lightblue}$ ${color.auto}" )
 	;;
 esac
 
 export PS1
+
