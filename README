@@ -64,14 +64,6 @@ Scripts
 
 
 # ***************************************************************************
-TODO's and BUGS
-	add zsh functionality
-	proglangs.sh: add environment support for python, julia, java, c, ruby
-	create an install automation script
-	prompt.sh: add pwd and time to ksh's PS1
-	add git 
-
-# ***************************************************************************
 Licence
 
 This file is part of dotfiles.d.
