@@ -1,7 +1,11 @@
-# prompt.sh
-# sets prompt format and colors
-
-# prompt colors
+# ============================================================================
+# name       : prompt.sh
+# description: PS1 format and color settings
+# arguments  : N/A
+# returns    : N/A
+# author     : sergio ferreira <sfer96@gmail.com>
+# date       : 20200310
+# ============================================================================
 case "${shtype}" in
 
 	"bash")
@@ -39,7 +43,7 @@ case "${shtype}" in
 			auto='\033[0m'
 		)
 
-		PS1=$( print -n "${color.lightblue}$(logname)@$(hostname):\${PWD}${color.lightcyan} [\$(date +"%H:%M:%S")]${color.lightblue}$ ${color.auto}" )
+		PS1=$( print -n "${color.lightblue}${USER}@${HOSTNAME}:\${PWD}${color.lightcyan} [\$(date +"%H:%M:%S")]${color.lightblue}$ ${color.auto}" )
 	;;
 esac
 
