@@ -9,19 +9,19 @@
 # ----------------------------------------------------------------------------
 # - installation type: -------------------------------------------------------
 # local install
-source_dir=~/dotfiles.d
+_source_dir=~/dotfiles.d
 # system install 
 # uncomment next line for a system wide install
-#source_dir=/etc/profile.d/dotfiles
+#_source_dir=/etc/profile.d/dotfiles
 
 # ----------------------------------------------------------------------------
 # - shell flavours: ----------------------------------------------------------
 # select shell through a simple heuristic:
 #   in login shell's, $0 resolves to [-]<shell>
 case $0 in 
-	*bash) shtype="bash"
+	*bash) _shtype="bash"
 	;;
-	*ksh) shtype="ksh"
+	*ksh) _shtype="ksh"
 	;;
 	*) printf "shell $0 is not suported; \n\t exiting dotfiles"
 esac
@@ -29,37 +29,37 @@ esac
 # ----------------------------------------------------------------------------
 # - sourcing orchestration: --------------------------------------------------
 # prompt definition
-if [ -f ${source_dir}/prompt.sh ]; then
-	. ${source_dir}/prompt.sh
+if [ -f ${_source_dir}/prompt.sh ]; then
+	. ${_source_dir}/prompt.sh
 fi
 
 # set shell options
-if [ -f ${source_dir}/options.sh ]; then
-	. ${source_dir}/options.sh
+if [ -f ${_source_dir}/options.sh ]; then
+	. ${_source_dir}/options.sh
 fi
 
 # set functions
-if [ -f ${source_dir}/functions.sh ]; then
-	. ${source_dir}/functions.sh
+if [ -f ${_source_dir}/functions.sh ]; then
+	. ${_source_dir}/functions.sh
 fi
 
 # alias definitions
-if [ -f ${source_dir}/alias.sh ]; then
-	. ${source_dir}/alias.sh
+if [ -f ${_source_dir}/alias.sh ]; then
+	. ${_source_dir}/alias.sh
 fi
 
 # set up programming languages environment variables
-if [ -f ${source_dir}/proglangs.sh ]; then
-	. ${source_dir}/proglangs.sh
+if [ -f ${_source_dir}/proglangs.sh ]; then
+	. ${_source_dir}/proglangs.sh
 fi
 
 # my apps environment variables
-if [ -f ${source_dir}/apps.sh ]; then
-	. ${source_dir}/apps.sh
+if [ -f ${_source_dir}/apps.sh ]; then
+	. ${_source_dir}/apps.sh
 fi
 
 # ----------------------------------------------------------------------------
 # - unset aux files and functions: -------------------------------------------
-unset source_dir
-unset shtype
+unset _source_dir
+unset _shtype
 

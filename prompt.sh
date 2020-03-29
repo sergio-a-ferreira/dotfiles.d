@@ -6,7 +6,7 @@
 # author     : sergio ferreira <sfer96@gmail.com>
 # date       : 20200310
 # ============================================================================
-case "${shtype}" in
+case "${_shtype}" in
 
 	"bash")
 		declare -A PROMPT_COLORS

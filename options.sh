@@ -17,5 +17,5 @@ set -o histexpand on
 # ----------------------------------------------------------------------------
 # - bash options: ------------------------------------------------------------
 # enable alias
-[ "${shtype}" = "bash" ] && shopt -s expand_aliases
+[ "${_shtype}" = "bash" ] && shopt -s expand_aliases
 

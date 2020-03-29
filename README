@@ -38,8 +38,8 @@ You can also do a system wide installation; in this case you will need
 	root or sudo permissions.
 	
 Edit loadenv.sh
-	comment the line source_dir=~/dotfiles
-	uncomment the line #source_dir=/etc/profile.d/dotfiles
+	comment the line _source_dir=~/dotfiles
+	uncomment the line #_source_dir=/etc/profile.d/dotfiles
 
 Copy dotfiles.d to /etc/profile.d
 

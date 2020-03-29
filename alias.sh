@@ -46,5 +46,6 @@ alias perm='stat -c "%a %n '
 # google-chrome browser
 alias chrome='google-chrome '
 
-# python pass clone
+# python pass emulation
 alias pass='echo >/dev/null '
+
