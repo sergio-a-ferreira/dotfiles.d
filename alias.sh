@@ -1,6 +1,6 @@
 # ============================================================================
 # name       : alias.sh
-# description: set up some useful aliases
+# description: user defined aliases
 # arguments  : N/A
 # returns    : N/A
 # author     : sergio ferreira <sfer96@gmail.com>
@@ -41,7 +41,7 @@ fi
 alias functions='typeset -f '
 
 # returns octal permissions for a file
-alias perm='stat -c "%a %n '
+alias perm='stat -c "%a %n" '
 
 # google-chrome browser
 alias chrome='google-chrome '
