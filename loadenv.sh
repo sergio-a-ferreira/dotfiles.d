@@ -17,14 +17,17 @@ _source_dir=~/dotfiles.d
 # ----------------------------------------------------------------------------
 # - shell flavours: ----------------------------------------------------------
 # select shell through a simple heuristic:
-#   in login shell's, $0 resolves to [-]<shell>
-case $0 in 
-	*bash) _shtype="bash"
+_shtype=$(basename $(readlink /proc/$$/exe))
+
+case "${_shtype}" in
+	bash)	_shtype="bash";;
+	ksh*)	_shtype="ksh";;
+	*)	err=128
+		printf "shell ${_shtype} is not suported;\nerror ${err}: exiting dotfiles\n" 1>&2
+		exit ${err}
 	;;
-	*ksh) _shtype="ksh"
-	;;
-	*) printf "shell $0 is not suported; \n\t exiting dotfiles"
 esac
+shelltype=${_shtype}
 
 # ----------------------------------------------------------------------------
 # - sourcing orchestration: --------------------------------------------------
