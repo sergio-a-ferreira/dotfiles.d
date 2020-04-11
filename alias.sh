@@ -40,15 +40,16 @@ fi
 
 # ----------------------------------------------------------------------------
 # - other user aliases: -----------------------------------------------------
-# to see environment functions
-alias functions='typeset -f '
+alias functions='typeset -f '	# to see environment functions
+alias perm='stat -c "%a %n" '	# returns octal permissions for a file
 
-# returns octal permissions for a file
-alias perm='stat -c "%a %n" '
+alias chrome='google-chrome '	# google-chrome browser
 
-# google-chrome browser
-alias chrome='google-chrome '
-
-# python pass emulation
-alias pass='echo >/dev/null '
+alias integer='typeset -i '
+alias constant='typeset -r '	# => readonly --> can't be unset
+alias upper='typeset -u '
+alias lower='typeset -l '
+alias array='typeset -a '		# val01 val02 val...
+alias dict='typeset -A '		# ['black']=value
+alias pass='echo >/dev/null '	# python pass emulation
 
