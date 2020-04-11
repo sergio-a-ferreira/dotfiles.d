@@ -1,0 +1,77 @@
+# ============================================================================
+# name       : sanity_check.txt
+# description: sanity checks description
+# author     : sergio ferreira <sfer96@gmail.com>
+# date       : 20200330
+# ============================================================================
+# ----------------------------------------------------------------------------
+The features available in the shell via sourcing should also be available 
+	to scripts.
+
+# ----------------------------------------------------------------------------
+The script behavior must be identical when the script is executed 
+	through the command line or by a scheduller (e.g. crontab).
+
+# ----------------------------------------------------------------------------
+When calling a shell explicitly, dotfiles.d must identify the shell accurately,
+	regardless of the user's login shell;
+	and should execute with and without execution permissions.
+
+
+	$ <shell> script.sh
+
+	[chmod 664]
+	bash login shell:
+		$ bash dotfiles.d/tests/dotfiles.d_t.sh 
+		$ bash dotfiles.d_t.sh
+		* * * * * bash ~/dotfiles.d/tests/dotfiles.d_t.sh
+		$ ksh dotfiles.d/tests/dotfiles.d_t.sh
+		$ ksh dotfiles.d_t.sh
+		* * * * * ksh ~/dotfiles.d/tests/dotfiles.d_t.sh
+
+	ksh login shell:
+		$ bash dotfiles.d/tests/dotfiles.d_t.sh 
+		$ bash dotfiles.d_t.sh
+		* * * * * bash ~/dotfiles.d/tests/dotfiles.d_t.sh
+		$ ksh dotfiles.d/tests/dotfiles.d_t.sh
+		$ ksh dotfiles.d_t.sh
+		* * * * * ksh ~/dotfiles.d/tests/dotfiles.d_t.sh
+
+
+	[chmod 775]
+	bash login shell:
+		$ bash dotfiles.d/tests/dotfiles.d_t.sh 
+		$ bash dotfiles.d_t.sh
+		* * * * * bash ~/dotfiles.d/tests/dotfiles.d_t.sh
+		$ ksh dotfiles.d/tests/dotfiles.d_t.sh
+		$ ksh dotfiles.d_t.sh
+		* * * * * ksh ~/dotfiles.d/tests/dotfiles.d_t.sh
+
+	ksh login shell:
+		$ bash dotfiles.d/tests/dotfiles.d_t.sh 
+		$ bash dotfiles.d_t.sh
+		* * * * * bash ~/dotfiles.d/tests/dotfiles.d_t.sh
+		$ ksh dotfiles.d/tests/dotfiles.d_t.sh
+		$ ksh dotfiles.d_t.sh
+		* * * * * ksh ~/dotfiles.d/tests/dotfiles.d_t.sh
+
+
+# ----------------------------------------------------------------------------
+When calling a script directly, must identify accurately the shell 
+	- mapping to the login shell; 
+	the script must have execution permissions.
+
+
+	$ path/to/script.sh
+
+	[chmod 775]
+	bash login shell:
+		$ dotfiles.d/tests/dotfiles.d_t.sh
+		$ ./dotfiles.d_t.sh
+		* * * * * ~/dotfiles.d/tests/dotfiles.d_t.sh
+
+	ksh login shell:
+		$ dotfiles.d/tests/dotfiles.d_t.sh
+		$ ./dotfiles.d_t.sh
+		* * * * * ~/dotfiles.d/tests/dotfiles.d_t.sh
+

@@ -1,13 +1,14 @@
 # ============================================================================
-# name       : proglangs.sh
-# description: programming languages environment settings
+# name       : apps.sh
+# description: set pathes to programming languages and user applications
 # arguments  : N/A
 # returns    : N/A
 # author     : sergio ferreira <sfer96@gmail.com>
 # date       : 20200310
 # ============================================================================
+# programming languages
 # ----------------------------------------------------------------------------
-# - golang: ------------------------------------------------------------------
+# - golang:
 # see go env for a full list of go environment variables
 #
 # the GOPATH environment variable is the root of the workspace and
@@ -28,3 +29,14 @@ export GOPATH=~/go
 export GOBIN=${GOPATH}/bin
 [ ! -d ${GOBIN} ] && mkdir -p ${GOBIN}
 export PATH="${PATH}:${GOBIN}"
+
+
+# ============================================================================
+# user applications
+# ----------------------------------------------------------------------------
+# - bash_fw:
+if [ "${SHELL_NAME}" = "bash" ]; then
+	export BASHFW_PATH=~/bash_fw
+	[ ! -d ${BASHFW_PATH} ] && mkdir -p ${BASHFW_PATH}
+fi
+

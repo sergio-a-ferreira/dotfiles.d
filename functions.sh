@@ -1,15 +1,18 @@
 # ============================================================================
-# name       : apps.sh
-# description: environment variables needed by user apps
+# name       : functions.sh
+# description: auxiliary functions
 # arguments  : N/A
 # returns    : N/A
 # author     : sergio ferreira <sfer96@gmail.com>
-# date       : 20200310
+# date       : 20200411
 # ============================================================================
 # ----------------------------------------------------------------------------
-# - bash_fw: -----------------------------------------------------------------
-if [ "${_shtype}" = "bash" ]; then
-	export BASHFW_PATH=~/bash_fw
-	[ ! -d ${BASHFW_PATH} ] && mkdir -p ${BASHFW_PATH}
-fi
+shellName () {
+
+	# prints the shell type: bash; ksh; ...
+
+	printf $(basename $(readlink /proc/$$/exe))
+	return $?
+}
+
 

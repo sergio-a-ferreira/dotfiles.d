@@ -1,5 +1,5 @@
 # ============================================================================
-# name       : loadenv.sh
+# name       : source_shell.sh
 # description: orchestrate environment scripts sourcing
 # arguments  : N/A
 # returns    : N/A
@@ -15,35 +15,33 @@ _source_dir=~/dotfiles.d
 #_source_dir=/etc/profile.d/dotfiles
 
 # ----------------------------------------------------------------------------
-# - shell flavours: ----------------------------------------------------------
-# select shell through a simple heuristic:
-_shtype=$(basename $(readlink /proc/$$/exe))
+# load auxiliary functions
+if [ -f ${_source_dir}/functions.sh ]; then
+	. ${_source_dir}/functions.sh
+fi
 
-case "${_shtype}" in
-	bash)	_shtype="bash";;
-	ksh*)	_shtype="ksh";;
-	*)	err=128
+_sh_name=$(shellName)
+case "${_sh_name}" in
+	bash)
+		SHELL_NAME="bash"
+	;;
+	*ksh*)
+		SHELL_NAME="ksh"
+		export SHELL=$(which ksh)
+	;;
+	*)	_rc=128
 		printf "shell ${_shtype} is not suported;\nerror ${err}: exiting dotfiles\n" 1>&2
-		exit ${err}
+		exit ${_rc}
 	;;
 esac
-shelltype=${_shtype}
+export SHELL_NAME
+unset _sh_name
 
 # ----------------------------------------------------------------------------
 # - sourcing orchestration: --------------------------------------------------
-# prompt definition
-if [ -f ${_source_dir}/prompt.sh ]; then
-	. ${_source_dir}/prompt.sh
-fi
-
 # set shell options
 if [ -f ${_source_dir}/options.sh ]; then
 	. ${_source_dir}/options.sh
-fi
-
-# set functions
-if [ -f ${_source_dir}/functions.sh ]; then
-	. ${_source_dir}/functions.sh
 fi
 
 # alias definitions
@@ -51,18 +49,18 @@ if [ -f ${_source_dir}/alias.sh ]; then
 	. ${_source_dir}/alias.sh
 fi
 
-# set up programming languages environment variables
-if [ -f ${_source_dir}/proglangs.sh ]; then
-	. ${_source_dir}/proglangs.sh
+# set up pathes to programming languages and user apps
+if [ -f ${_source_dir}/pathes.sh ]; then
+	. ${_source_dir}/pathes.sh
 fi
 
-# my apps environment variables
-if [ -f ${_source_dir}/apps.sh ]; then
-	. ${_source_dir}/apps.sh
+# prompt definition
+if [ -f ${_source_dir}/prompt.sh ]; then
+	. ${_source_dir}/prompt.sh
 fi
 
 # ----------------------------------------------------------------------------
 # - unset aux files and functions: -------------------------------------------
 unset _source_dir
-unset _shtype
+
 

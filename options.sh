@@ -16,10 +16,10 @@ set -o histexpand on
 
 # ----------------------------------------------------------------------------
 # - ksh options: -------------------------------------------------------------
-[ "${_shtype}" = "ksh" ] &&  set -o multiline
+[ "${SHELL_NAME}" = "ksh" ] &&  set -o multiline
 
 # ----------------------------------------------------------------------------
 # - bash options: ------------------------------------------------------------
 # enable alias
-[ "${_shtype}" = "bash" ] && shopt -s expand_aliases
+[ "${SHELL_NAME}" = "bash" ] && shopt -s expand_aliases
 
