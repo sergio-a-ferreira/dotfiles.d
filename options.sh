@@ -16,7 +16,12 @@ set -o histexpand on
 
 # ----------------------------------------------------------------------------
 # - ksh options: -------------------------------------------------------------
-[ "${SHELL_NAME}" = "ksh" ] &&  set -o multiline
+if [ "${SHELL_NAME}" = "ksh" ]; then
+	# enable multiline prompt
+	set -o multiline
+	# load ls --colors
+	[ -f /etc/profile.d/colorls.sh ] && . /etc/profile.d/colorls.sh
+fi
 
 # ----------------------------------------------------------------------------
 # - bash options: ------------------------------------------------------------
