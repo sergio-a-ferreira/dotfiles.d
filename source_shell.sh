@@ -20,8 +20,7 @@ if [ -f ${_source_dir}/functions.sh ]; then
 	. ${_source_dir}/functions.sh
 fi
 
-_sh_name=$(shellName)
-case "${_sh_name}" in
+case $(shellName) in
 	bash)
 		SHELL_NAME="bash"
 	;;
@@ -35,7 +34,6 @@ case "${_sh_name}" in
 	;;
 esac
 export SHELL_NAME
-unset _sh_name
 
 # ----------------------------------------------------------------------------
 # - sourcing orchestration: --------------------------------------------------
