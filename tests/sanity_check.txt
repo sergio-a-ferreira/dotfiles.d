@@ -75,3 +75,18 @@ When calling a script directly, must identify accurately the shell
 		$ ./dotfiles.d_t.sh
 		* * * * * ~/dotfiles.d/tests/dotfiles.d_t.sh
 
+
+
+If you want to change your login shell then you can use chsh (change shell). If you simply want to run an instance of ksh which behaves as a login shell, then read on.
+
+ksh behaves as a login shell if the first character of argument 0 is -; if you are in ksh (ksh93 or mksh, not ksh88 nor pdksh), zsh, yash or bash, then
+
+exec -a -ksh /path/to/ksh [optional arguments]
+will replace the current shell with an instance of the Korn shell which behaves as a login shell. (If you are in bash or zsh, then exec -l /path/to/ksh is shorter and has the same effect.)
+
+If none of those shells are available, you can also try perl:
+
+perl -e 'exec {"ksh"} "-ksh"'
+
+exec is a shell command; the command indicated works in ksh and bash. ksh behave as a login shell when $0 begins with a hyphen.
+

@@ -50,6 +50,8 @@ Create a file in /etc/profile.d with '.sh' extension and
 		. /etc/profile.d/dotfiles/source_shell.sh
 	fi
 
+To enable ls colors link ~/.dir_colors -> ./dotfiles.d/dir_colors.cfg
+
 
 # ***************************************************************************
 Scripts

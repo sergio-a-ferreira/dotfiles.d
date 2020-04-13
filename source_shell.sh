@@ -26,14 +26,17 @@ case $(shellName) in
 	;;
 	*ksh*)
 		SHELL_NAME="ksh"
-		export SHELL=$(which ksh)
+		export SHELL=$(command -v ksh)
 	;;
 	*)	_rc=128
-		printf "shell ${_shtype} is not suported;\nerror ${err}: exiting dotfiles\n" 1>&2
+		printf "shell $(shellName) is not suported;\nerror ${err}: exiting dotfiles\n" 1>&2
 		exit ${_rc}
 	;;
 esac
 export SHELL_NAME
+
+export USER=$(userName)
+export HOSTNAME=$(hostName)
 
 # ----------------------------------------------------------------------------
 # - sourcing orchestration: --------------------------------------------------

@@ -24,13 +24,13 @@ alias grep='grep --color=auto'
 # ----------------------------------------------------------------------------
 # - update / upgrade system: -------------------------------------------------
 # need root previleges
-which dnf >/dev/null 2>&1
+command -v dnf >/dev/null 2>&1
 if [ $? -eq 0 ]; then
 	# Red Hat / Fedora / CentOS ...?
 	alias update='sudo dnf update && sudo dnf upgrade'
 else
 	# debian / ubuntu ...?
-	which apk >/dev/null 2>&1
+	command -v apk >/dev/null 2>&1
 	if [ $? -eq 0 ]; then
 		alias update='sudo apk update && sudo apk upgrade'
 	else

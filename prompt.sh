@@ -103,4 +103,4 @@ case "${SHELL_NAME}" in
 esac
 
 export PS1
-
+unset _prefix _suffix _text_formats _basic_colors _prompt_colors
