@@ -98,7 +98,7 @@ case "${SHELL_NAME}" in
 		PS1="${_prompt_colors['blue']}\u@\H:\w [${_prompt_colors['cyan']}\t${_prompt_colors['blue']}] \$ ${_prompt_colors[auto]}"
 	;;
 	"ksh")
-		PS1=$(print -n "${_prompt_colors['blue']}${USER}@${HOSTNAME}:\${PWD} [${_prompt_colors['cyan']}\$(date +"%H:%M:%S")${_prompt_colors['blue']}] $ ${_prompt_colors['auto']}")
+		PS1=$(print -n "${_prompt_colors['blue']}${USER}@${HOSTNAME}:\$(pwd|sed 's|${HOME}|~|') [${_prompt_colors['cyan']}\$(date +"%H:%M:%S")${_prompt_colors['blue']}] $ ${_prompt_colors['auto']}")
 	;;
 esac
 
