@@ -26,5 +26,6 @@ fi
 # ----------------------------------------------------------------------------
 # - bash options: ------------------------------------------------------------
 # enable alias
-[ "${SHELL_NAME}" = "bash" ] && shopt -s expand_aliases
-
+if [ "${SHELL_NAME}" = "bash" ]; then
+	shopt -s expand_aliases
+fi

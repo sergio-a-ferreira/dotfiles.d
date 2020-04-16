@@ -9,18 +9,18 @@
 # PS1 formats
 case "${SHELL_NAME}" in
 	"bash")
-		_prefix='\[\033['
-		_suffix='m\]'
+		_prf='\[\033['
+		_suf='m\]'
 	;;
 	"ksh")
-		_prefix='\033['
-		_suffix='m'
+		_prf='\033['
+		_suf='m'
 	;;
 esac
 
 
 # text format codes
-typeset -A _text_formats=(
+typeset -A _txt_fmt=(
 	['normal']='00'
 	['bold']='01'
 	['underline']="04"
@@ -30,77 +30,112 @@ typeset -A _text_formats=(
 
 
 # text color codes
-typeset -A _basic_colors=(
-	['auto']='00'
+typeset -A _txt_clr=(
 	['black']='30'
 	['red']='31'
 	['green']='32'
 	['yellow']='33'
 	['blue']='34'
-	['pink']='35'
+	['magenta']='35'
 	['cyan']='36'
 	['white']='37'
 )	
 
+# background color codes
+typeset -A _bg_clr=(
+	['black']='40'
+	['red']='41'
+	['green']='42'
+	['yellow']='43'
+	['blue']='44'
+	['magenta']='45'
+	['cyan']='46'
+	['white']='47'
+)
+
+# high intensity color codes
+typeset -A _hi_clr=(
+	['black']='90'
+	['red']='91'
+	['green']='92'
+	['yellow']='93'
+	['blue']='94'
+	['magenta']='95'
+	['cyan']='96'
+	['white']='97'
+)
+
+# background high intensity color codes
+typeset -A _bg_hi_clr=(
+	['black']='100'
+	['red']='101'
+	['green']='102'
+	['yellow']='103'
+	['blue']='104'
+	['magenta']='105'
+	['cyan']='106'
+	['white']='107'
+)
 
 # prompt colors formated
 # 	b_: bold
 # 	u_: underline
 # 	f_: flash / blink
-typeset -A _prompt_colors=(
+typeset -A _ps1=(
 	
-	['auto']="\033[0m"		# common to both bash and ksh
+	# text reset
+	['normal']="\033[0m"		# common to both bash and ksh
 	
-	['black']="${_prefix}${_text_formats['normal']};${_basic_colors['black']}${_suffix}"
-	['b_black']="${_prefix}${_text_formats['bold']};${_basic_colors['black']}${_suffix}"
-	['u_black']="${_prefix}${_text_formats['underline']};${_basic_colors['black']}${_suffix}"
-	['f_black']="${_prefix}${_text_formats['flash']};${_basic_colors['black']}${_suffix}"
-	
-	['white']="${_prefix}${_text_formats['normal']};${_basic_colors['white']}${_suffix}"
-	['b_white']="${_prefix}${_text_formats['bold']};${_basic_colors['white']}${_suffix}"
-	['u_white']="${_prefix}${_text_formats['underline']};${_basic_colors['white']}${_suffix}"
-	['f_white']="${_prefix}${_text_formats['flash']};${_basic_colors['white']}${_suffix}"
-	
-	['red']="${_prefix}${_text_formats['normal']};${_basic_colors['red']}${_suffix}"
-	['b_red']="${_prefix}${_text_formats['bold']};${_basic_colors['red']}${_suffix}"
-	['u_red']="${_prefix}${_text_formats['underline']};${_basic_colors['red']}${_suffix}"
-	['f_red']="${_prefix}${_text_formats['flash']};${_basic_colors['red']}${_suffix}"
-	
-	['green']="${_prefix}${_text_formats['normal']};${_basic_colors['green']}${_suffix}"
-	['b_green']="${_prefix}${_text_formats['bold']};${_basic_colors['green']}${_suffix}"
-	['u_green']="${_prefix}${_text_formats['underline']};${_basic_colors['green']}${_suffix}"
-	['f_green']="${_prefix}${_text_formats['flash']};${_basic_colors['green']}${_suffix}"
-	
-	['yellow']="${_prefix}${_text_formats['normal']};${_basic_colors['yellow']}${_suffix}"
-	['b_yellow']="${_prefix}${_text_formats['bold']};${_basic_colors['yellow']}${_suffix}"
-	['u_yellow']="${_prefix}${_text_formats['underline']};${_basic_colors['yellow']}${_suffix}"
-	['f_yellow']="${_prefix}${_text_formats['flash']};${_basic_colors['yellow']}${_suffix}"
-	
-	['blue']="${_prefix}${_text_formats['normal']};${_basic_colors['blue']}${_suffix}"
-	['b_blue']="${_prefix}${_text_formats['bold']};${_basic_colors['blue']}${_suffix}"
-	['u_blue']="${_prefix}${_text_formats['underline']};${_basic_colors['blue']}${_suffix}"
-	['f_blue']="${_prefix}${_text_formats['flash']};${_basic_colors['blue']}${_suffix}"
-	
-	['pink']="${_prefix}${_text_formats['normal']};${_basic_colors['pink']}${_suffix}"
-	['b_pink']="${_prefix}${_text_formats['bold']};${_basic_colors['pink']}${_suffix}"
-	['u_pink']="${_prefix}${_text_formats['underline']};${_basic_colors['pink']}${_suffix}"
-	['f_pink']="${_prefix}${_text_formats['flash']};${_basic_colors['pink']}${_suffix}"
-	
-	['cyan']="${_prefix}${_text_formats['normal']};${_basic_colors['cyan']}${_suffix}"
-	['b_cyan']="${_prefix}${_text_formats['bold']};${_basic_colors['cyan']}${_suffix}"
-	['u_cyan']="${_prefix}${_text_formats['underline']};${_basic_colors['cyan']}${_suffix}"
-	['f_cyan']="${_prefix}${_text_formats['flash']};${_basic_colors['cyan']}${_suffix}"
+	# regular colors
+	['black']="${_prf}${_txt_fmt['normal']};${_txt_clr['black']}${_suf}"
+	['red']="${_prf}${_txt_fmt['normal']};${_txt_clr['red']}${_suf}"
+	['green']="${_prf}${_txt_fmt['normal']};${_txt_clr['green']}${_suf}"
+	['yellow']="${_prf}${_txt_fmt['normal']};${_txt_clr['yellow']}${_suf}"
+	['blue']="${_prf}${_txt_fmt['normal']};${_txt_clr['blue']}${_suf}"
+	['magenta']="${_prf}${_txt_fmt['normal']};${_txt_clr['magenta']}${_suf}"
+	['cyan']="${_prf}${_txt_fmt['normal']};${_txt_clr['cyan']}${_suf}"
+	['white']="${_prf}${_txt_fmt['normal']};${_txt_clr['white']}${_suf}"
+
+	# bold colors
+	['b_black']="${_prf}${_txt_fmt['bold']};${_txt_clr['black']}${_suf}"
+	['b_red']="${_prf}${_txt_fmt['bold']};${_txt_clr['red']}${_suf}"
+	['b_green']="${_prf}${_txt_fmt['bold']};${_txt_clr['green']}${_suf}"
+	['b_yellow']="${_prf}${_txt_fmt['bold']};${_txt_clr['yellow']}${_suf}"
+	['b_blue']="${_prf}${_txt_fmt['bold']};${_txt_clr['blue']}${_suf}"
+	['b_magenta']="${_prf}${_txt_fmt['bold']};${_txt_clr['magenta']}${_suf}"
+	['b_cyan']="${_prf}${_txt_fmt['bold']};${_txt_clr['cyan']}${_suf}"
+	['b_white']="${_prf}${_txt_fmt['bold']};${_txt_clr['white']}${_suf}"
+
+	# underlined
+	['u_black']="${_prf}${_txt_fmt['underline']};${_txt_clr['black']}${_suf}"
+	['u_red']="${_prf}${_txt_fmt['underline']};${_txt_clr['red']}${_suf}"
+	['u_green']="${_prf}${_txt_fmt['underline']};${_txt_clr['green']}${_suf}"
+	['u_yellow']="${_prf}${_txt_fmt['underline']};${_txt_clr['yellow']}${_suf}"
+	['u_blue']="${_prf}${_txt_fmt['underline']};${_txt_clr['blue']}${_suf}"
+	['u_magenta']="${_prf}${_txt_fmt['underline']};${_txt_clr['magenta']}${_suf}"
+	['u_cyan']="${_prf}${_txt_fmt['underline']};${_txt_clr['cyan']}${_suf}"
+	['u_white']="${_prf}${_txt_fmt['underline']};${_txt_clr['white']}${_suf}"
+
+	# blinking / flashing
+	['f_black']="${_prf}${_txt_fmt['flash']};${_txt_clr['black']}${_suf}"
+	['f_red']="${_prf}${_txt_fmt['flash']};${_txt_clr['red']}${_suf}"
+	['f_green']="${_prf}${_txt_fmt['flash']};${_txt_clr['green']}${_suf}"
+	['f_yellow']="${_prf}${_txt_fmt['flash']};${_txt_clr['yellow']}${_suf}"
+	['f_blue']="${_prf}${_txt_fmt['flash']};${_txt_clr['blue']}${_suf}"
+	['f_white']="${_prf}${_txt_fmt['flash']};${_txt_clr['white']}${_suf}"
+	['f_magenta']="${_prf}${_txt_fmt['flash']};${_txt_clr['magenta']}${_suf}"
+	['f_cyan']="${_prf}${_txt_fmt['flash']};${_txt_clr['cyan']}${_suf}"
 )
 
 
 case "${SHELL_NAME}" in
 	"bash")
-		PS1="${_prompt_colors['blue']}\u@\H:\w [${_prompt_colors['cyan']}\t${_prompt_colors['blue']}] \$ ${_prompt_colors[auto]}"
+		PS1="${_ps1['blue']}\u@\H:\w [${_ps1['cyan']}\t${_ps1['blue']}] \$ ${_ps1[normal]}"
 	;;
 	"ksh")
-		PS1=$(print -n "${_prompt_colors['blue']}${USER}@${HOSTNAME}:\$(pwd|sed 's|${HOME}|~|') [${_prompt_colors['cyan']}\$(date +"%H:%M:%S")${_prompt_colors['blue']}] $ ${_prompt_colors['auto']}")
+		PS1=$(print -n "${_ps1['blue']}${USER}@${HOSTNAME}:\$(pwd|sed 's|${HOME}|~|') [${_ps1['cyan']}\$(date +"%H:%M:%S")${_ps1['blue']}] $ ${_ps1['normal']}")
 	;;
 esac
 
 export PS1
-unset _prefix _suffix _text_formats _basic_colors _prompt_colors
+unset _prf _suf _txt_fmt _txt_clr _bg_clr _hi_clr _bg_hi_clr _ps1
