@@ -73,45 +73,30 @@ shellVersion () {
 shellIsLogin () {
 	# returns 0 if is a login shell
 	#		  1 if is a non-login shell
-	#		  2 if can't determine shell type
-	#		128 if shell is not supported
 	case $(shellName) in
 		bash)
 			shopt -q login_shell
 			_rc=$?
 		;;
 		*ksh*)
-			_status=$(set -o)
-			_status=$(print "${_status}" | grep "login_shell" | sed 's/\ .*\ /\ /g' | cut -d" " -f2)
-			
-			if [ "${_status}" = "on" ]; then
-				_rc=0
-			elif [ "${_status}" = "off" ]; then
-				_rc=1
-			else
-				_rc=2
-			fi
-		;;
-		*)	_rc=128
-			printf "shell $(shellName) is not suported;\nerror ${err}: exiting dotfiles\n" 1>&2
-			exit ${_rc}
+			[ -o login ]
+			_rc=$?
 		;;
 	esac
 
-	unset _status
 	return ${_rc}
 }
 
 shellIsInteractive () {
-	# returns true if is a interactive shell
+	# returns 0 if is a interactive shell
+	#		  1 if is a non-interactive shell
 	printf $- | grep -qi i
 	return $?	
 }
 
 shellType () {
 	# prints the shell type: (non)login; (non)interactive
-	# tokens:
-	#	[nl|l];[ni|i]
+	# tokens: [nl|l];[ni|i]
 	shellIsLogin && _token="l" || _token="nl"
 	_token="${_token};"
 	shellIsInteractive && _token="${_token}i" || _token="${_token}ni" 
@@ -156,5 +141,30 @@ userGIDs () {
 	# prints the user gids
 	id -G
 	return $?
+}
+
+# ----------------------------------------------------------------------------
+# - path manipulation: -------------------------------------------------------
+pathMunge () {
+	# adds a directory to ${PATH} start
+	# arguments:
+	#  directory to add
+	#  flag "after" to add to end
+	_dir=${1}
+	_flag=${2}
+
+	case ":${PATH}:" in
+		*:"${_dir}":*)
+    ;;
+	*)
+    	if [ "${_flag}" = "after" ]; then
+        	PATH=${PATH}:${_dir}
+    	else
+        	PATH=${_dir}:${PATH}
+    	fi
+    ;;
+	esac
+
+	export PATH
 }
 
