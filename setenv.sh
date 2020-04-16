@@ -1,5 +1,5 @@
 # ============================================================================
-# name       : source_shell.sh
+# name       : setenv.sh
 # description: orchestrate environment scripts sourcing
 # arguments  : N/A
 # returns    : N/A

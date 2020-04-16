@@ -8,10 +8,9 @@
 # ============================================================================
 # ----------------------------------------------------------------------------
 # load dotfiles.d environment
-. ~/dotfiles.d/source_shell.sh
+. ~/dotfiles.d/setenv.sh
 
 # log execution
-# XXX can't evoque _source_dir and _shtype after unsetting it
 logfile=${_source_dir}/_${SHELL_TYPE}_test.log
 
 echo "***************************************************" >>${logfile} 2>&1

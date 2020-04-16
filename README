@@ -27,17 +27,17 @@ These files are intended to run for setting an user's environment.
 Copy dotfiles.d to your home directory and add the command below 
 	to your ~/.<shell>rc file:
 
-	[ -f ~/dotfiles.d/source_shell.sh ] && . ~/dotfiles.d/source_shell.sh
+	[ -f ~/dotfiles.d/setenv.sh ] && . ~/dotfiles.d/setenv.sh
 
 	e.g.:
-	bash:	echo '[ -f ~/dotfiles.d/source_shell.sh ] && . ~/dotfiles.d/source_shell.sh' >> ~/.bashrc
-	ksh:	echo '[ -f ~/dotfiles.d/source_shell.sh ] && . ~/dotfiles.d/source_shell.sh' >> ~/.kshrc
+	bash:	echo '[ -f ~/dotfiles.d/setenv.sh ] && . ~/dotfiles.d/setenv.sh' >> ~/.bashrc
+	ksh:	echo '[ -f ~/dotfiles.d/setenv.sh ] && . ~/dotfiles.d/setenv.sh' >> ~/.kshrc
 
 
 You can also do a system wide installation; in this case you will need 
 	root or sudo permissions.
 	
-Edit source_shell.sh
+Edit setenv.sh
 	comment the line _source_dir=~/dotfiles
 	uncomment the line #_source_dir=/etc/profile.d/dotfiles
 
@@ -46,8 +46,8 @@ Copy dotfiles.d to /etc/profile.d
 Create a file in /etc/profile.d with '.sh' extension and
 	copy the command below:
 
-	if [ -f /etc/profile.d/dotfiles/source_shell.sh ]; then
-		. /etc/profile.d/dotfiles/source_shell.sh
+	if [ -f /etc/profile.d/dotfiles/setenv.sh ]; then
+		. /etc/profile.d/dotfiles/setenv.sh
 	fi
 
 To enable ls colors link ~/.dir_colors -> ./dotfiles.d/dir_colors.cfg
@@ -56,7 +56,7 @@ To enable ls colors link ~/.dir_colors -> ./dotfiles.d/dir_colors.cfg
 # ***************************************************************************
 Scripts
 
-	source_shell.sh	orchestrates script sourcing
+	setenv.sh	orchestrates script sourcing
 	prompt.sh	prompt definition; sets PS1 format and colors
 	options.sh	sets shell options
 	functions.sh	some usefull functions
